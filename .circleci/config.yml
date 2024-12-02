@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: [DESCRIPTION]
-          command: [COMMAND]
+          command: echo " pdfyzfhfdh"
 
 workflows:
   version: 2
