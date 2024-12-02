@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Deploy Application
           command: |
-            echo "Deploying to << pipeline.parameters.environment >> environment"
+            echo "Deploying to << parameters.environment >> environment"
       - when:
           condition:
             equal: [ "production", << parameters.environment >> ]
