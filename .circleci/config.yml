@@ -57,5 +57,5 @@ workflows:
             - build
           filters:
             branches:
-              only: main # Only run deploy job on main branch
+              only: workshop/circleci # Only run deploy job on main branch
           context: deployment
