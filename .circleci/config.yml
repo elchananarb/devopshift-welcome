@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: [DESCRIPTION]
-          command: echo " pdfyzfhfdh"
+          name: "test ely"
+          command: echo "pdfyzfhfdh"
 
 workflows:
   version: 2
