@@ -43,7 +43,7 @@ jobs:
             echo "Deploying to << pipeline.parameters.environment >> environment"
       - when:
           condition:
-            equal: [ "production", << pipeline.parameters.environment >> ]
+            equal: [ "production", << parameters.environment >> ]
           steps:
             - run:
                 name: Production-only Step
