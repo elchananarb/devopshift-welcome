@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: "test ely"
-          command: echo "pdfyzfhfdh"
+          command: echo "pdfyzfhfdh << parameters.node_version >>"
 
 workflows:
   version: 2
