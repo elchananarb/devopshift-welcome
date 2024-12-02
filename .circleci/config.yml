@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: echo ppppp
-          command: echo "dddddddd"
+          name: [DESCRIPTION]
+          command: [COMMAND]
 
 workflows:
   version: 2
