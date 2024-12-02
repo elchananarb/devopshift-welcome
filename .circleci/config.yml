@@ -1,35 +1,61 @@
 version: 2.1
 
+# Define the environment parameter
 parameters:
   environment:
     type: string
     default: "staging"
-
+    
+# Define jobs
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:18.0
     steps:
+      - checkout
       - run:
-          name: "Build Application"
+          name: Display Current Branch
           command: |
-            echo "Building in << pipeline.parameters.environment >> environment"
+            echo "Current branch: ${CIRCLE_BRANCH}"
+      - run:
+          name: Install Dependencies
+          command: |
+            echo "Installing dependencies..."
+            # npm install  # Uncommented when actually using Node.js
+      - run:
+          name: Run Unit Tests
+          command: |
+            echo "Running tests..."
+            # npm test    # Uncommented when actually using Node.js
 
   deploy:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:18.0
     steps:
+      - checkout
       - run:
-          name: "Deploy Application"
+          name: Deploy Application
           command: |
             echo "Deploying to << pipeline.parameters.environment >> environment"
+      - when:
+          condition:
+            equal: [ "production", << pipeline.parameters.environment >> ]
+          steps:
+            - run:
+                name: Production-only Step
+                command: |
+                  echo "Running production-specific tasks..."
 
-          
+# Define workflow
 workflows:
   version: 2
-  deploy-workflow:
+  build-and-deploy:
     jobs:
-      - build
+      - build # This will run for all branches
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: main # Only run deploy job on main branch
+          context: deployment
