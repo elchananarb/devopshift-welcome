@@ -15,3 +15,13 @@ jobs:
           command: |
             echo "Building in << pipeline.parameters.environment >> environment"
 
+            
+
+workflows:
+  version: 2
+  deploy-workflow:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
